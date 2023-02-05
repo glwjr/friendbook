@@ -1,8 +1,13 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const conn = require('./conn');
+const Message = require('./Message');
+const Conversation = require('./Conversation');
 
-const { STRING, UUID, UUIDV4 } = conn.Sequelize;
+const {
+  Op, STRING, UUID, UUIDV4,
+} = conn.Sequelize;
+
 const { JWT } = process.env;
 
 const User = conn.define(
@@ -81,6 +86,17 @@ User.authenticate = async function authenticate({ username, password }) {
 User.encryptUser = async function encryptUser(user) {
   const { dataValues } = await User.create(user);
   return User.generateToken(dataValues);
+};
+
+User.prototype.getConversations = async function getUserConversations() {
+  const conversations = await Conversation.findAll({
+    where: {
+      [Op.or]: [{ creatorId: this.id }, { recipientId: this.id }],
+    },
+    include: [Message],
+  });
+
+  return conversations;
 };
 
 module.exports = User;

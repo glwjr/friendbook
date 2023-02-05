@@ -11,5 +11,6 @@ app.use('/public', express.static(path.join(__dirname, '../public')));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../public/index.html')));
 
 app.use('/api/auth', require('./api/auth'));
+app.use('/api/conversations', require('./api/conversations'));
 
 module.exports = app;
