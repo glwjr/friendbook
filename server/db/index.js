@@ -82,10 +82,18 @@ const syncAndSeed = async () => {
   await User.create({ username: 'admin', password: '123', isAdmin: true });
 
   const [gary, mysia, mariahdessa, fady] = await Promise.all([
-    User.create({ username: 'gary', password: '123', isAdmin: false }),
-    User.create({ username: 'mysia', password: '123', isAdmin: false }),
-    User.create({ username: 'mariahdessa', password: '123', isAdmin: false }),
-    User.create({ username: 'fady', password: '123', isAdmin: false }),
+    User.create({
+      username: 'gary', password: '123', isAdmin: false, bio: 'This is the bio for Gary.',
+    }),
+    User.create({
+      username: 'mysia', password: '123', isAdmin: false, bio: 'This is the bio for Mysia.',
+    }),
+    User.create({
+      username: 'mariahdessa', password: '123', isAdmin: false, bio: 'This is the bio for Mariahdessa.',
+    }),
+    User.create({
+      username: 'fady', password: '123', isAdmin: false, bio: 'This is the bio for Fady.',
+    }),
   ]);
 
   const [conversationOne, conversationTwo] = await Promise.all([

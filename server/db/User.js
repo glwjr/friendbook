@@ -6,7 +6,7 @@ const Conversation = require('./Conversation');
 const Post = require('./Post');
 
 const {
-  Op, STRING, UUID, UUIDV4,
+  Op, STRING, UUID, UUIDV4, BOOLEAN, TEXT,
 } = conn.Sequelize;
 
 const { JWT } = process.env;
@@ -33,6 +33,13 @@ const User = conn.define(
       validate: {
         notEmpty: true,
       },
+    },
+    isAdmin: {
+      type: BOOLEAN,
+      allowNull: false,
+    },
+    bio: {
+      type: TEXT,
     },
   },
   {
