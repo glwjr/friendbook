@@ -46,7 +46,7 @@ const User = conn.define(
     hooks: {
       async beforeSave(user) {
         if (user.changed('password')) {
-          // eslint-disable-next-line no-param-reassign
+        // eslint-disable-next-line no-param-reassign
           user.password = await bcrypt.hash(user.password, 5);
         }
       },
