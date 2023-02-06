@@ -9,6 +9,7 @@ import { fetchConversations, fetchPosts, loginWithToken } from '../store';
 import Register from './Register';
 import Conversations from './Conversations';
 import Posts from './Posts';
+import NotFound from './NotFound';
 
 function App() {
   const { auth } = useSelector((state) => state);
@@ -36,8 +37,9 @@ function App() {
       <Routes>
         <Route path="/" element={auth.id ? <Home /> : <Login />} />
         <Route path="/register" element={auth.id ? <Navigate to="/" /> : <Register />} />
-        <Route path="/posts" element={<Posts />} />
-        <Route path="/conversations" element={<Conversations />} />
+        <Route path="/posts" element={auth.id ? <Posts /> : <NotFound />} />
+        <Route path="/conversations" element={auth.id ? <Conversations /> : <NotFound />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </div>
   );
