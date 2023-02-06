@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const conn = require('./conn');
 const Message = require('./Message');
 const Conversation = require('./Conversation');
+const Post = require('./Post');
 
 const {
   Op, STRING, UUID, UUIDV4,
@@ -97,6 +98,16 @@ User.prototype.getConversations = async function getUserConversations() {
   });
 
   return conversations;
+};
+
+User.prototype.getPosts = async function getUserPosts() {
+  const posts = await Post.findAll({
+    where: {
+      userId: this.id,
+    },
+  });
+
+  return posts;
 };
 
 module.exports = User;

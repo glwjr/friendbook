@@ -21,12 +21,4 @@ const Post = conn.define('post', {
   },
 });
 
-Post.getUserPosts = function getUserPosts(userId) {
-  return Post.findAll({
-    where: {
-      userId,
-    },
-  });
-};
-
 module.exports = Post;

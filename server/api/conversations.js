@@ -3,12 +3,15 @@ const { User } = require('../db');
 
 const app = express.Router();
 
-app.get('/', async (req, res, next) => {
+app.get('/', async (req, res) => {
   try {
     const user = await User.findByToken(req.headers.authorization);
-    res.send(await user.getConversations());
+    res.status(200).json(await user.getConversations());
   } catch (err) {
-    next(err);
+    res.status(500).json({
+      message: 'Could not retrieve conversations for that user',
+      error: err.message,
+    });
   }
 });
 
