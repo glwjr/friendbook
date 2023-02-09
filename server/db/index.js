@@ -81,7 +81,7 @@ const syncAndSeed = async () => {
 
   await User.create({ username: 'admin', password: '123', isAdmin: true });
 
-  const [gary, mysia, mariahdessa, fady] = await Promise.all([
+  const [gary, mysia, mariahdessa, fady, guest] = await Promise.all([
     User.create({
       username: 'gary', password: '123', isAdmin: false, bio: 'This is the bio for Gary.',
     }),
@@ -94,21 +94,33 @@ const syncAndSeed = async () => {
     User.create({
       username: 'fady', password: '123', isAdmin: false, bio: 'This is the bio for Fady.',
     }),
+    User.create({
+      username: 'guest', password: '123', isAdmin: false, bio: 'This is the bio for Guest.',
+    }),
   ]);
 
   const [conversationOne, conversationTwo] = await Promise.all([
     Conversation.create({ creatorId: gary.id, recipientId: mysia.id }),
     Conversation.create({ creatorId: fady.id, recipientId: gary.id }),
+    Conversation.create({ creatorId: guest.id, recipientId: mysia.id }),
+    Conversation.create({ creatorId: fady.id, recipientId: guest.id }),
   ]);
 
   await Promise.all([
     Friendship.create({ requestorId: gary.id, accepteeId: mysia.id }),
     Friendship.create({ requestorId: mariahdessa.id, accepteeId: mysia.id }),
     Friendship.create({ requestorId: fady.id, accepteeId: gary.id }),
+    Friendship.create({ requestorId: guest.id, accepteeId: mysia.id }),
+    Friendship.create({ requestorId: mariahdessa.id, accepteeId: guest.id }),
+    Friendship.create({ requestorId: guest.id, accepteeId: gary.id }),
     Post.create({ post: 'This is test post number one. Gary wrote this.', userId: gary.id }),
     Post.create({ post: 'This is test post number two. Mysia wrote this.', userId: mysia.id }),
     Post.create({ post: 'This is test post number three. Mariahdessa wrote this.', userId: mariahdessa.id }),
     Post.create({ post: 'This is test post number four. Fady wrote this.', userId: fady.id }),
+    Post.create({ post: 'This is test post number five. Gary wrote this.', userId: gary.id }),
+    Post.create({ post: 'This is test post number six. Mysia wrote this.', userId: mysia.id }),
+    Post.create({ post: 'This is test post number seven. Mariahdessa wrote this.', userId: mariahdessa.id }),
+    Post.create({ post: 'This is test post number eight. Fady wrote this.', userId: fady.id }),
     Message.create({
       message: 'Message from Gary to Mysia.', senderId: gary.id, recipientId: mysia.id, conversationId: conversationOne.id,
     }),
