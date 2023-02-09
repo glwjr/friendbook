@@ -30,7 +30,7 @@ function App() {
     <div className="app">
       <h1>Fakebook</h1>
       <nav>
-        <Link to="/">Home</Link>
+        {auth.id ? <Link to="/">Home</Link> : ''}
         {auth.id ? <Link to="/posts">Posts</Link> : ''}
         {auth.id ? <Link to="/conversations">Conversations</Link> : ''}
       </nav>
