@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // eslint-disable-next-line default-param-last
-const posts = (state = {}, action) => {
+const posts = (state = [], action) => {
   if (action.type === 'SET_POSTS') {
     return action.posts;
   }
