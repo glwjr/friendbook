@@ -1,6 +1,6 @@
 const conn = require('./conn');
 
-const { TEXT, UUID, UUIDV4 } = conn.Sequelize;
+const { STRING, TEXT, UUID, UUIDV4 } = conn.Sequelize;
 
 const Post = conn.define(
   'post',
@@ -15,6 +15,14 @@ const Post = conn.define(
       allowNull: false,
       validate: {
         notEmpty: true,
+      },
+    },
+    imageUrl: {
+      type: STRING,
+      allowNull: true,
+      validate: {
+        notEmpty: true,
+        isUrl: true,
       },
     },
     userId: {

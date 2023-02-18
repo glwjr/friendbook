@@ -112,6 +112,7 @@ User.prototype.getPosts = async function getUserPosts() {
     where: {
       userId: this.id,
     },
+    include: User,
   });
 
   return posts;
