@@ -1,5 +1,5 @@
 {
-  "name": "fb-clone",
+  "name": "social-network",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/glwjr/fb-clone.git"
+    "url": "git+https://github.com/glwjr/social-network.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/glwjr/fb-clone/issues"
+    "url": "https://github.com/glwjr/social-network/issues"
   },
-  "homepage": "https://github.com/glwjr/fb-clone#readme",
+  "homepage": "https://github.com/glwjr/social-network#readme",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

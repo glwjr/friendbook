@@ -28,7 +28,6 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Fakebook</h1>
       <nav>
         {auth.id ? <Link to="/">Home</Link> : ''}
         {auth.id ? <Link to="/posts">Posts</Link> : ''}
