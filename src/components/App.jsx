@@ -6,7 +6,7 @@ import {
 import { Container, ScopedCssBaseline } from '@mui/material';
 import Home from './Home';
 import Login from './Login';
-import { fetchConversations, fetchPosts, loginWithToken } from '../store';
+import { fetchConversations, loginWithToken } from '../store';
 import Register from './Register';
 import Conversations from './Conversations';
 import Posts from './Posts';
@@ -24,7 +24,6 @@ function App() {
   useEffect(() => {
     if (auth.id) {
       dispatch(fetchConversations());
-      dispatch(fetchPosts());
     }
   }, [auth]);
 

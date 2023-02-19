@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Unstable_Grid2';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -12,9 +12,15 @@ import Typography from '@mui/material/Typography';
 import { blue } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { fetchUserPosts } from '../store';
 
 function Posts() {
+  const dispatch = useDispatch();
   const { posts } = useSelector((state) => state);
+
+  useEffect(() => {
+    dispatch(fetchUserPosts());
+  }, []);
 
   return (
     <Grid
@@ -54,7 +60,7 @@ function Posts() {
                 {post.post}
               </Typography>
             </CardContent>
-            <CardActions>
+            <CardActions disableSpacing>
               <IconButton aria-label="add to favorites">
                 <FavoriteIcon />
               </IconButton>
