@@ -15,4 +15,16 @@ app.get('/', async (req, res) => {
   }
 });
 
+app.get('/network', async (req, res) => {
+  try {
+    const user = await User.findByToken(req.headers.authorization);
+    res.status(200).json(await user.getNetworkPosts());
+  } catch (err) {
+    res.status(500).json({
+      message: 'Could not retrieve posts for that user\'s network',
+      error: err.message,
+    });
+  }
+});
+
 module.exports = app;

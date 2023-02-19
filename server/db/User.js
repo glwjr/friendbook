@@ -4,6 +4,7 @@ const conn = require('./conn');
 const Message = require('./Message');
 const Conversation = require('./Conversation');
 const Post = require('./Post');
+const Friendship = require('./Friendship');
 
 const {
   Op, STRING, UUID, UUIDV4, BOOLEAN, TEXT,
@@ -113,6 +114,27 @@ User.prototype.getPosts = async function getUserPosts() {
       userId: this.id,
     },
     include: User,
+  });
+
+  return posts;
+};
+
+User.prototype.getNetworkPosts = async function getNetworkPosts() {
+  const friendships = await Friendship.findAll({
+    where: {
+      [Op.or]: [{ requestorId: this.id }, { accepteeId: this.id }],
+      status: 'ACCEPTED',
+    },
+  });
+
+  const requestors = await friendships.map((friendship) => friendship.requestorId);
+  const acceptees = await friendships.map((friendship) => friendship.accepteeId);
+  const result = requestors.concat(acceptees);
+
+  const posts = await Post.findAll({
+    where: {
+      userId: result,
+    },
   });
 
   return posts;
