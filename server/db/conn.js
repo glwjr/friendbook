@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 const conn = new Sequelize(
-  process.env.DATABASE_URL || 'postgres://localhost/social-network-db',
+  process.env.DATABASE_URL || 'postgres://localhost/friendbook-db',
   {
     logging: false,
   },

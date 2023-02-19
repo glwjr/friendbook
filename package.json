@@ -1,5 +1,5 @@
 {
-  "name": "social-network",
+  "name": "friendbook",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,22 +11,25 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/glwjr/social-network.git"
+    "url": "git+https://github.com/glwjr/friendbook.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/glwjr/social-network/issues"
+    "url": "https://github.com/glwjr/friendbook/issues"
   },
-  "homepage": "https://github.com/glwjr/social-network#readme",
+  "homepage": "https://github.com/glwjr/friendbook#readme",
   "dependencies": {
+    "@babel/core": "^7.19.6",
+    "@babel/preset-react": "^7.18.6",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.7",
     "axios": "^1.3.2",
+    "babel-loader": "^9.0.0",
     "bcrypt": "^5.1.0",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
@@ -41,9 +44,6 @@
     "sequelize": "^6.25.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.6",
-    "@babel/preset-react": "^7.18.6",
-    "babel-loader": "^9.0.0",
     "eslint": "^8.33.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
