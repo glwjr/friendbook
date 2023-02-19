@@ -1,6 +1,8 @@
 const conn = require('./conn');
 
-const { STRING, TEXT, UUID, UUIDV4 } = conn.Sequelize;
+const {
+  STRING, TEXT, UUID, UUIDV4,
+} = conn.Sequelize;
 
 const Post = conn.define(
   'post',
