@@ -107,12 +107,13 @@ const syncAndSeed = async () => {
   ]);
 
   await Promise.all([
-    Friendship.create({ requestorId: gary.id, accepteeId: mysia.id }),
-    Friendship.create({ requestorId: mariahdessa.id, accepteeId: mysia.id }),
-    Friendship.create({ requestorId: fady.id, accepteeId: gary.id }),
-    Friendship.create({ requestorId: guest.id, accepteeId: mysia.id }),
-    Friendship.create({ requestorId: mariahdessa.id, accepteeId: guest.id }),
-    Friendship.create({ requestorId: guest.id, accepteeId: gary.id }),
+    Friendship.create({ status: 'ACCEPTED', requestorId: gary.id, accepteeId: mysia.id }),
+    Friendship.create({ status: 'ACCEPTED', requestorId: mariahdessa.id, accepteeId: mysia.id }),
+    Friendship.create({ status: 'PENDING', requestorId: gary.id, accepteeId: mariahdessa.id }),
+    Friendship.create({ status: 'ACCEPTED', requestorId: fady.id, accepteeId: gary.id }),
+    Friendship.create({ status: 'ACCEPTED', requestorId: guest.id, accepteeId: mysia.id }),
+    Friendship.create({ status: 'ACCEPTED', requestorId: mariahdessa.id, accepteeId: guest.id }),
+    Friendship.create({ status: 'ACCEPTED', requestorId: guest.id, accepteeId: gary.id }),
     Post.create({
       post: 'This is test post number one. Gary wrote this.',
       imageUrl: 'https://images.unsplash.com/photo-1672272791557-f6f462a317c1',
